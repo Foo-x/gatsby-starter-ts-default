@@ -1,10 +1,10 @@
-import * as React from "react"
+import type { PageProps } from "gatsby"
 import { Link } from "gatsby"
-
+import React from "react"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 
-const SecondPage = () => (
+const SecondPage: React.FC<PageProps> = () => (
   <Layout>
     <Seo title="Page two" />
     <h1>Hi from the second page</h1>
