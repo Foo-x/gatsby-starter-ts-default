@@ -7,6 +7,7 @@
 
 import { graphql, useStaticQuery } from "gatsby"
 import React from "react"
+import { SiteTitleQuery } from "../../graphql-types"
 import Header from "./header"
 
 type Props = {
@@ -14,8 +15,8 @@ type Props = {
 }
 
 const Layout: React.FC<Props> = ({ children }) => {
-  const data = useStaticQuery<GatsbyTypes.SiteTitleQueryQuery>(graphql`
-    query SiteTitleQuery {
+  const data = useStaticQuery<SiteTitleQuery>(graphql`
+    query SiteTitle {
       site {
         siteMetadata {
           title

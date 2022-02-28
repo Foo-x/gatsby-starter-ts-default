@@ -6,6 +6,7 @@
  */
 
 import { graphql, useStaticQuery } from "gatsby"
+import { SeoQuery } from "graphql-types"
 import React from "react"
 import { Helmet } from "react-helmet"
 
@@ -17,9 +18,9 @@ type Props = {
 }
 
 const Seo: React.FC<Props> = ({ description, lang, meta = [], title }) => {
-  const { site } = useStaticQuery(
+  const { site } = useStaticQuery<SeoQuery>(
     graphql`
-      query {
+      query Seo {
         site {
           siteMetadata {
             title
@@ -31,8 +32,8 @@ const Seo: React.FC<Props> = ({ description, lang, meta = [], title }) => {
     `
   )
 
-  const metaDescription = description || site.siteMetadata.description
-  const defaultTitle = site.siteMetadata?.title
+  const metaDescription = description ?? site?.siteMetadata?.description ?? ""
+  const defaultTitle = site?.siteMetadata?.title
 
   return (
     <Helmet
@@ -65,7 +66,7 @@ const Seo: React.FC<Props> = ({ description, lang, meta = [], title }) => {
           },
           {
             name: `twitter:creator`,
-            content: site.siteMetadata?.author || ``,
+            content: site?.siteMetadata?.author || ``,
           },
           {
             name: `twitter:title`,
