@@ -5,14 +5,14 @@
  * See: https://www.gatsbyjs.com/docs/use-static-query/
  */
 
-import { graphql, useStaticQuery } from "gatsby"
-import React from "react"
-import { SiteTitleQuery } from "../../graphql-types"
-import Header from "./header"
+import { graphql, useStaticQuery } from 'gatsby';
+import React from 'react';
+import { SiteTitleQuery } from '../../graphql-types';
+import Header from './header';
 
 type Props = {
-  children: React.ReactNode
-}
+  children: React.ReactNode;
+};
 
 const Layout: React.FC<Props> = ({ children }) => {
   const data = useStaticQuery<SiteTitleQuery>(graphql`
@@ -23,7 +23,7 @@ const Layout: React.FC<Props> = ({ children }) => {
         }
       }
     }
-  `)
+  `);
 
   return (
     <>
@@ -43,11 +43,11 @@ const Layout: React.FC<Props> = ({ children }) => {
         >
           © {new Date().getFullYear()}, Built with
           {` `}
-          <a href="https://www.gatsbyjs.com">Gatsby</a>
+          <a href='https://www.gatsbyjs.com'>Gatsby</a>
         </footer>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Layout
+export default Layout;
