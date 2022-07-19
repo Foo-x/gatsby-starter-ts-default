@@ -6,7 +6,6 @@
  */
 
 import { graphql, useStaticQuery } from 'gatsby';
-import { SeoQuery } from 'graphql-types';
 import React from 'react';
 import { Helmet } from 'react-helmet';
 
@@ -18,7 +17,7 @@ type Props = {
 };
 
 const Seo: React.FC<Props> = ({ description, lang, meta = [], title }) => {
-  const { site } = useStaticQuery<SeoQuery>(
+  const { site } = useStaticQuery<Queries.SeoQuery>(
     graphql`
       query Seo {
         site {
