@@ -6,17 +6,14 @@
  */
 
 import { graphql, useStaticQuery } from 'gatsby';
-import React from 'react';
-import { Helmet } from 'react-helmet';
+import React, { PropsWithChildren } from 'react';
 
-type Props = {
+type Props = PropsWithChildren<{
   description?: string;
-  lang?: string;
-  meta?: JSX.IntrinsicElements['meta'][];
-  title?: string;
-};
+  title: string;
+}>;
 
-const Seo: React.FC<Props> = ({ description, lang, meta = [], title }) => {
+const Seo: React.FC<Props> = ({ description, title, children }) => {
   const { site } = useStaticQuery<Queries.SeoQuery>(
     graphql`
       query Seo {
@@ -35,50 +32,18 @@ const Seo: React.FC<Props> = ({ description, lang, meta = [], title }) => {
   const defaultTitle = site?.siteMetadata?.title;
 
   return (
-    <Helmet
-      htmlAttributes={{
-        lang,
-      }}
-      title={title}
-      titleTemplate={defaultTitle ? `%s | ${defaultTitle}` : undefined}
-      meta={[
-        ...[
-          {
-            name: `description`,
-            content: metaDescription,
-          },
-          {
-            property: `og:title`,
-            content: title,
-          },
-          {
-            property: `og:description`,
-            content: metaDescription,
-          },
-          {
-            property: `og:type`,
-            content: `website`,
-          },
-          {
-            name: `twitter:card`,
-            content: `summary`,
-          },
-          {
-            name: `twitter:creator`,
-            content: site?.siteMetadata?.author || ``,
-          },
-          {
-            name: `twitter:title`,
-            content: title,
-          },
-          {
-            name: `twitter:description`,
-            content: metaDescription,
-          },
-        ],
-        ...meta,
-      ]}
-    />
+    <>
+      <title>{defaultTitle ? `${title} | ${defaultTitle}` : title}</title>
+      <meta name='description' content={metaDescription} />
+      <meta name='og:title' content={title} />
+      <meta name='og:description' content={metaDescription} />
+      <meta name='og:type' content='website' />
+      <meta name='twitter:card' content='summary' />
+      <meta name='twitter:creator' content={site?.siteMetadata?.author ?? ''} />
+      <meta name='twitter:title' content={title} />
+      <meta name='twitter:description' content={metaDescription} />
+      {children}
+    </>
   );
 };
 

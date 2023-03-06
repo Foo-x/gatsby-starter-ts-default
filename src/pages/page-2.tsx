@@ -6,7 +6,6 @@ import Seo from '../components/seo';
 
 const SecondPage: React.FC<PageProps> = () => (
   <Layout>
-    <Seo title='Page two' />
     <h1>Hi from the second page</h1>
     <p>Welcome to page 2</p>
     <Link to='/'>Go back to the homepage</Link>
@@ -14,3 +13,7 @@ const SecondPage: React.FC<PageProps> = () => (
 );
 
 export default SecondPage;
+
+export const Head = () => {
+  return <Seo title='Page two' />;
+};
