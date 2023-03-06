@@ -1,12 +1,11 @@
 import { Link } from 'gatsby';
-import React from 'react';
-import * as styles from '../styles/components/header.module.css';
+import * as styles from '~/styles/components/Header.module.css';
 
-type Props = {
+export type Props = {
   siteTitle: string;
 };
 
-const Header: React.FC<Props> = ({ siteTitle }) => (
+const Header = ({ siteTitle }: Props) => (
   <header className={styles.header}>
     <div className={styles.headingWrapper}>
       <h1 className={styles.heading}>

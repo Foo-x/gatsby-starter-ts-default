@@ -6,20 +6,15 @@
  */
 
 import { graphql, useStaticQuery } from 'gatsby';
-import React, { PropsWithChildren } from 'react';
+import { PropsWithChildren } from 'react';
 
-type Props = PropsWithChildren<{
+export type Props = PropsWithChildren<{
   description?: string;
   lang?: string;
   title: string;
 }>;
 
-const Seo: React.FC<Props> = ({
-  description,
-  lang = 'ja',
-  title,
-  children,
-}) => {
+const Seo = ({ description, lang = 'ja', title, children }: Props) => {
   const { site } = useStaticQuery<Queries.SeoQuery>(
     graphql`
       query Seo {
