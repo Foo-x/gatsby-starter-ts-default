@@ -1,6 +1,10 @@
+import { GatsbyNode } from 'gatsby';
+
 const path = require(`path`);
 
-exports.onCreateWebpackConfig = ({ actions }) => {
+export const onCreateWebpackConfig: GatsbyNode['onCreateWebpackConfig'] = ({
+  actions,
+}) => {
   actions.setWebpackConfig({
     resolve: {
       alias: {
