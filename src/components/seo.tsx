@@ -10,10 +10,16 @@ import React, { PropsWithChildren } from 'react';
 
 type Props = PropsWithChildren<{
   description?: string;
+  lang?: string;
   title: string;
 }>;
 
-const Seo: React.FC<Props> = ({ description, title, children }) => {
+const Seo: React.FC<Props> = ({
+  description,
+  lang = 'ja',
+  title,
+  children,
+}) => {
   const { site } = useStaticQuery<Queries.SeoQuery>(
     graphql`
       query Seo {
@@ -33,6 +39,7 @@ const Seo: React.FC<Props> = ({ description, title, children }) => {
 
   return (
     <>
+      <html lang={lang} />
       <title>{defaultTitle ? `${title} | ${defaultTitle}` : title}</title>
       <meta name='description' content={metaDescription} />
       <meta name='og:title' content={title} />
